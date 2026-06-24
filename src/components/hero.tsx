@@ -1,6 +1,7 @@
 import { ArrowRight} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import ScrambleText from "./scramble-text";
 
 export default function Hero() {
   return (
@@ -14,7 +15,9 @@ export default function Hero() {
         </Badge>
 
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl max-w-3xl">
-          The discord bot for your <span>college</span>'s server.
+          The discord bot for your{" "} <br/>
+          <ScrambleText words={["college", "school", "institute", "company"]} /> 
+          's server.
         </h1>
 
         <p className="mt-6 max-w-xl text-lg text-muted-foreground">
