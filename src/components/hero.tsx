@@ -25,7 +25,7 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
-          <Button size="lg" className="rounded-2xl w-full sm:w-auto" asChild>
+          <Button size="lg" className="rounded-2xl w-full sm:w-auto h-12 px-8 text-base gap-3" asChild>
             <a
               href={process.env.DISCORD_BOT_INVITE_URL ?? "#"}
               target="_blank"

@@ -1,4 +1,5 @@
 import { CodeXml } from "lucide-react";
+import { SiGit, SiGithub } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -8,18 +9,18 @@ export default function Footer() {
           href="https://github.com/cdhananjay/email-verifier"
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-1.5 text-sm text-muted-foreground underline underline-offset-4 decoration-1 decoration-muted-foreground hover:text-foreground hover:decoration-foreground transition-colors"
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <CodeXml className="size-4" />
+          <SiGithub className="size-4" />
           Discord Bot
         </a>
         <a
           href="https://github.com/cdhananjay/email-verifier-website"
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-1.5 text-sm text-muted-foreground underline underline-offset-4 decoration-1 decoration-muted-foreground hover:text-foreground hover:decoration-foreground transition-colors"
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >  
-          <CodeXml className="size-4" />
+          <SiGithub className="size-4" />
           Website 
         </a>
       </div>
