@@ -6,7 +6,7 @@
 [![Better Auth](https://img.shields.io/badge/Better_Auth-6C47FF?logo=auth0&logoColor=fff)](https://www.better-auth.com)
 [![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=fff)](https://www.prisma.io)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff)](https://www.postgresql.org)
-[![Resend](https://img.shields.io/badge/Resend-000?logo=resend&logoColor=fff)](https://resend.com)
+[![Nodemailer](https://img.shields.io/badge/Nodemailer-30B980?logo=nodemailer&logoColor=fff)](https://nodemailer.com)
 [![Bun](https://img.shields.io/badge/Bun-000?logo=bun&logoColor=fff)](https://bun.sh)
 
 Companion authentication website for the [Email Verifier](https://github.com/cdhananjay/email-verifier) Discord bot. Users authenticate with their email via a login link, link their Discord account, and then run `/verify` in Discord to receive a verified role.
@@ -20,7 +20,7 @@ See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) fo
 
 - [Bun](https://bun.sh)
 - PostgreSQL database
-- [Resend](https://resend.com) API key
+- Gmail app password (or SMTP credentials)
 - Discord application with OAuth2 credentials ([Discord Developer Portal](https://discord.com/developers/applications))
 - A running instance of the [email-verifier](https://github.com/cdhananjay/email-verifier) Discord bot
 
@@ -58,10 +58,12 @@ See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) fo
 | Variable                  | Description                                   |
 | ------------------------- | --------------------------------------------- |
 | `DATABASE_URL`            | PostgreSQL connection string                  |
-| `RESEND_API_KEY`          | Resend API key for sending login link emails  |
 | `DISCORD_CLIENT_ID`       | Discord OAuth2 client ID                      |
 | `DISCORD_CLIENT_SECRET`   | Discord OAuth2 client secret                  |
-| `DISCORD_BOT_INVITE_URL`  | Discord bot invite URL (used on home page)
+| `DISCORD_BOT_INVITE_URL`  | Discord bot invite URL (used on home page)    |
+| `BETTER_AUTH_SECRET`      | Better Auth secret key                        |
+| `EMAIL_USER`              | Gmail address used to send login link emails  |
+| `EMAIL_PASS`              | Gmail app password for the above address      |
 
 ## Scripts
 
@@ -81,7 +83,7 @@ See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) fo
 - **Auth:** [Better Auth](https://www.better-auth.com) (magic link + Discord OAuth)
 - **ORM:** [Prisma](https://www.prisma.io) 7
 - **Database:** PostgreSQL
-- **Email:** [Resend](https://resend.com) + [React Email](https://react.email)
+- **Email:** [Nodemailer](https://nodemailer.com) + [React Email](https://react.email)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com) v4 + [shadcn/ui](https://ui.shadcn.com) (radix-nova)
 - **Linter / Formatter:** [Biome](https://biomejs.dev)
 - **Runtime:** [Bun](https://bun.sh)
