@@ -1,6 +1,14 @@
-import { Resend } from "resend";
+import { render } from "@react-email/render";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 // cant use SiGithub from "react-icons/si" directly because email clients strip down svgs
 const githubIcon = (
   // biome-ignore-start lint/performance/noImgElement: cant use svg, refer to comment above
@@ -13,6 +21,20 @@ const githubIcon = (
   />
   // biome-ignore-end lint/performance/noImgElement: cant use svg, refer to comment above
 );
+
+export async function sendEmail(
+  to: string,
+  subject: string,
+  magicLink: string,
+) {
+  const html = await render(emailTemplate(magicLink));
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to,
+    subject,
+    html,
+  });
+}
 
 export function emailTemplate(magicLink: string) {
   return (
@@ -159,5 +181,3 @@ export function emailTemplate(magicLink: string) {
     </div>
   );
 }
-
-export { resend };

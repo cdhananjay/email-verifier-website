@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { magicLink } from "better-auth/plugins";
-import { emailTemplate, resend } from "./email";
+import { sendEmail } from "./email";
 import { prisma } from "./prisma";
 
 export const auth = betterAuth({
@@ -19,12 +19,11 @@ export const auth = betterAuth({
         { email, token: _token, url, metadata: _metadata },
         _ctx,
       ) => {
-        resend.emails.send({
-          from: "onboarding@resend.dev",
-          to: email,
-          subject: "Login link for Email Verifier Discord Bot",
-          react: emailTemplate(url),
-        });
+        await sendEmail(
+          email,
+          "Login link for Email Verifier Discord Bot",
+          url,
+        );
       },
     }),
   ],
