@@ -22,9 +22,26 @@ export default function VerifyClient() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [linkingDiscord, setLinkingDiscord] = useState(false);
+  const [linkError, setLinkError] = useState<string | null>(null);
   const [discordStatus, setDiscordStatus] = useState<{
     linked: boolean;
   } | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const errorCode = params.get("error");
+    const errorDescription = params.get("error_description");
+    if (errorCode) {
+      setLinkError(
+        errorDescription ||
+          "Failed to link Discord account. Make sure your Discord account has a verified email.",
+      );
+      const url = new URL(window.location.href);
+      url.searchParams.delete("error");
+      url.searchParams.delete("error_description");
+      window.history.replaceState({}, "", url);
+    }
+  }, []);
 
   useEffect(() => {
     if (session?.user.emailVerified && discordStatus === null) {
@@ -60,11 +77,26 @@ export default function VerifyClient() {
 
   const handleLinkDiscord = async () => {
     setLinkingDiscord(true);
+    setLinkError(null);
 
-    await authClient.linkSocial({
-      provider: "discord",
-      callbackURL: "/verify",
-    });
+    try {
+      const { error: linkSocialError } = await authClient.linkSocial({
+        provider: "discord",
+        callbackURL: "/verify",
+        errorCallbackURL: "/verify",
+      });
+
+      if (linkSocialError) {
+        setLinkError(
+          linkSocialError.message ??
+            "Failed to link Discord. Make sure your Discord account has a verified email.",
+        );
+      }
+    } catch {
+      setLinkError("Something went wrong. Please try again.");
+    } finally {
+      setLinkingDiscord(false);
+    }
   };
 
   if (isPending) {
@@ -83,8 +115,8 @@ export default function VerifyClient() {
             <CardTitle className="text-xl">Check your email</CardTitle>
             <CardDescription className="max-w-sm">
               We sent a login link to{" "}
-              <strong className="text-foreground">{email}</strong>. Click the
-              link to sign in.
+              <strong className="text-foreground">{email}</strong>. <br /> If
+              you don't see it, check your spam folder or try later.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -154,6 +186,7 @@ export default function VerifyClient() {
             {linkingDiscord ? <Spinner /> : null}
             {linkingDiscord ? "Connecting..." : "Link Discord"}
           </Button>
+          {linkError && <p className="text-sm text-destructive">{linkError}</p>}
         </CardContent>
       </Card>
     );

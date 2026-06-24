@@ -14,7 +14,7 @@ const steps = [
   },
   {
     title: "Join servers and receive verified roles.",
-    image: "/images/step3.gif",
+    image: "/images/step3.png",
     step: "03",
   },
 ];

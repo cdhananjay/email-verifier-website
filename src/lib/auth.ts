@@ -11,6 +11,7 @@ export const auth = betterAuth({
   account: {
     accountLinking: {
       allowDifferentEmails: true,
+      trustedProviders: ["discord"],
     },
   },
   plugins: [
@@ -31,6 +32,9 @@ export const auth = betterAuth({
     discord: {
       clientId: process.env.DISCORD_CLIENT_ID as string,
       clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+      disableDefaultScope: true,
+      scope: ["identify"],
+      prompt: "consent",
     },
   },
 });
