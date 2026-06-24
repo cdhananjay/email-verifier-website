@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Email Verifier — Auth Website
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-000?logo=next.js&logoColor=fff)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org)
+[![Better Auth](https://img.shields.io/badge/Better_Auth-6C47FF?logo=auth0&logoColor=fff)](https://www.better-auth.com)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=fff)](https://www.prisma.io)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff)](https://www.postgresql.org)
+[![Resend](https://img.shields.io/badge/Resend-000?logo=resend&logoColor=fff)](https://resend.com)
+[![Bun](https://img.shields.io/badge/Bun-000?logo=bun&logoColor=fff)](https://bun.sh)
 
-First, run the development server:
+Companion authentication website for the [Email Verifier](https://github.com/cdhananjay/email-verifier) Discord bot. Users authenticate with their email via a login link, link their Discord account, and then run `/verify` in Discord to receive a verified role.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) for details on server-side configuration, commands, and the full verification flow.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live Link
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+to be updated
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Preview
 
-## Learn More
+[preview-gif]()
 
-To learn more about Next.js, take a look at the following resources:
+## Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Bun](https://bun.sh)
+- PostgreSQL database
+- [Resend](https://resend.com) API key
+- Discord application with OAuth2 credentials ([Discord Developer Portal](https://discord.com/developers/applications))
+- A running instance of the [email-verifier](https://github.com/cdhananjay/email-verifier) Discord bot
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Setup
 
-## Deploy on Vercel
+1. Clone the repository:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone https://github.com/cdhananjay/email-verifier-website.git
+   cd email-verifier-website
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Copy the environment template and fill in the values:
+
+   ```bash
+   cp example.env .env
+   ```
+
+3. Install dependencies and set up the database:
+
+   ```bash
+   bun install
+   bunx prisma migrate deploy
+   bunx prisma generate
+   ```
+
+4. Start the development server:
+
+   ```bash
+   bun dev
+   ```
+
+## Environment Variables
+
+| Variable                  | Description                                   |
+| ------------------------- | --------------------------------------------- |
+| `DATABASE_URL`            | PostgreSQL connection string                  |
+| `RESEND_API_KEY`          | Resend API key for sending login link emails  |
+| `DISCORD_CLIENT_ID`       | Discord OAuth2 client ID                      |
+| `DISCORD_CLIENT_SECRET`   | Discord OAuth2 client secret                  |
+| `DISCORD_BOT_INVITE_URL`  | Discord bot invite URL (used on home page)
+
+## Scripts
+
+| Command                        | Description                              |
+| ------------------------------ | ---------------------------------------- |
+| `bun run dev`                      | Start the development server             |
+| `bun run build`                    | Deploy migrations, generate Prisma, build |
+| `bun run start`                    | Start the production server              |
+| `bun run typecheck`                | Type-check the codebase                  |
+| `bun run format-lint`              | Format and lint the source               |
+| `bun run format-lint:check`        | Check formatting and lint (no write)     |
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org) 16
+- **UI Library:** [React](https://react.dev) 19
+- **Auth:** [Better Auth](https://www.better-auth.com) (magic link + Discord OAuth)
+- **ORM:** [Prisma](https://www.prisma.io) 7
+- **Database:** PostgreSQL
+- **Email:** [Resend](https://resend.com) + [React Email](https://react.email)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com) v4 + [shadcn/ui](https://ui.shadcn.com) (radix-nova)
+- **Linter / Formatter:** [Biome](https://biomejs.dev)
+- **Runtime:** [Bun](https://bun.sh)
+
+## Related
+
+- [email-verifier](https://github.com/cdhananjay/email-verifier) - the companion Discord bot that gates server access behind email domain verification.
