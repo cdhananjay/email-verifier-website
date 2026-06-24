@@ -13,8 +13,8 @@ Companion authentication website for the [Email Verifier](https://github.com/cdh
 
 See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) for details on server-side configuration, commands, and the full verification flow.
 
-## [email-verifier.vercel.app](https://email-verifier.vercel.app/)
-## [email-verifier.vercel.app/verify](https://email-verifier.vercel.app/verify)
+## [email-verifier-bot.vercel.app](https://email-verifier-bot.vercel.app/)
+## [email-verifier-bot.vercel.app/verify](https://email-verifier-bot.vercel.app/verify)
 
 ## Prerequisites
 
