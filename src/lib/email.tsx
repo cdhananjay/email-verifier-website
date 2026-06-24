@@ -1,6 +1,16 @@
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+// cant use SiGithub from "react-icons/si" directly because email clients strip down svgs
+const githubIcon = (
+  <img
+    src="https://cdn.simpleicons.org/github/6b7280"
+    alt=""
+    width="16"
+    height="16"
+    style={{ verticalAlign: "middle", marginRight: "4px" }}
+  />
+);
 
 export function emailTemplate(magicLink: string) {
   return (
@@ -120,26 +130,24 @@ export function emailTemplate(magicLink: string) {
               lineHeight: 1.8,
             }}
           >
-            <div>Open source on GitHub</div>
-
             <div style={{ marginTop: "8px" }}>
               <a
                 href="https://github.com/cdhananjay/email-verifier"
                 style={{
                   color: "#6b7280",
-                  textDecoration: "underline",
                 }}
               >
-                Email Verifier Bot
+                {githubIcon}
+                Discord Bot
               </a>
               {" • "}
               <a
                 href="https://github.com/cdhananjay/email-verifier-website"
                 style={{
                   color: "#6b7280",
-                  textDecoration: "underline",
                 }}
               >
+                {githubIcon}
                 Website
               </a>
             </div>

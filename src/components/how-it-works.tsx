@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 
 const steps = [
   {
-    title: "Verify your email via magic link.",
+    title: "Server admin sets the config.",
     image: "/images/step1.gif",
     step: "01",
   },
@@ -43,6 +43,7 @@ export default function HowItWorks() {
                     width={800}
                     height={500}
                     className="w-full object-cover"
+                    loading="eager"
                   />
                 </Card>
               </div>
