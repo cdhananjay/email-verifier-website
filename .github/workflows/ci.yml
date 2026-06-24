@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
 jobs:
-  lint:
+  format-lint-typecheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -11,4 +11,6 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
+      - run: DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" bun --bunx prisma generate
       - run: bun run format-lint:check
+      - run: bun run typecheck

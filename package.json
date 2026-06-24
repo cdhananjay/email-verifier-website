@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "bun install && bunx --bun prisma migrate deploy && bunx --bun prisma generate && next build",
     "start": "next start",
-    "lint": "biome check",
-    "format": "biome format --write",
+    "typecheck": "bunx --bun tsc --noEmit",
     "format-lint": "bunx --bun @biomejs/biome check --write src",
     "format-lint:check": "bunx --bun @biomejs/biome check src"
   },
