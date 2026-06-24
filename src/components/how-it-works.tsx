@@ -8,13 +8,13 @@ const steps = [
     step: "01",
   },
   {
-    title: "Link your Discord account.",
+    title: "Run /verify and follow the steps.",
     image: "/images/step2.gif",
     step: "02",
   },
   {
-    title: "Join servers and receive verified roles.",
-    image: "/images/step3.png",
+    title: "After linking accounts, run /verify again.",
+    image: "/images/step3.gif",
     step: "03",
   },
 ];
@@ -36,14 +36,15 @@ export default function HowItWorks() {
               }`}
             >
               <div className="flex-1">
-                <Card className="rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <Card className="rounded-3xl overflow-hidden p-0 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <Image
                     src={step.image}
                     alt={step.title}
                     width={800}
                     height={500}
-                    className="w-full object-cover"
+                    className="w-full object-contain"
                     loading="eager"
+                    unoptimized={step.image.endsWith(".gif")}
                   />
                 </Card>
               </div>
