@@ -3,6 +3,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 // cant use SiGithub from "react-icons/si" directly because email clients strip down svgs
 const githubIcon = (
+  // biome-ignore-start lint/performance/noImgElement: cant use svg, refer to comment above
   <img
     src="https://cdn.simpleicons.org/github/6b7280"
     alt=""
@@ -10,6 +11,7 @@ const githubIcon = (
     height="16"
     style={{ verticalAlign: "middle", marginRight: "4px" }}
   />
+  // biome-ignore-end lint/performance/noImgElement: cant use svg, refer to comment above
 );
 
 export function emailTemplate(magicLink: string) {

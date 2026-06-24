@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, CheckCircle2, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -167,7 +167,9 @@ export default function VerifyClient() {
       <CardContent className="space-y-6">
         <div className="space-y-2 text-center">
           <p className="text-sm text-muted-foreground">{session.user.email}</p>
-          <p className="text-sm font-medium">Return back to Discord and run /verify</p>
+          <p className="text-sm font-medium">
+            Return back to Discord and run /verify
+          </p>
         </div>
         <div className="flex flex-col gap-3">
           <Button asChild className="w-full rounded-2xl">

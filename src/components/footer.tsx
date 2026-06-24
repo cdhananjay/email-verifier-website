@@ -1,5 +1,4 @@
-import { CodeXml } from "lucide-react";
-import { SiGit, SiGithub } from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -19,9 +18,9 @@ export default function Footer() {
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >  
+        >
           <SiGithub className="size-4" />
-          Website 
+          Website
         </a>
       </div>
     </footer>

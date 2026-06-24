@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const CHARS = "!@#$%^&*()_+-=[]{}|;:,.<>?/`~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const CHARS =
+  "!@#$%^&*()_+-=[]{}|;:,.<>?/`~ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 const SCRAMBLE_SPEED = 40;
 const HOLD_DURATION = 2000;
 
-export default function ScrambleText({words} : {words: string[]}) {
-
+export default function ScrambleText({ words }: { words: string[] }) {
   const [displayText, setDisplayText] = useState(words[0]);
   const [isScrambling, setIsScrambling] = useState(false);
   const indexRef = useRef(0);
@@ -28,7 +28,10 @@ export default function ScrambleText({words} : {words: string[]}) {
           let result = "";
           for (let i = 0; i < length; i++) {
             const settleAt = Math.floor((totalFrames * (i + 1)) / length);
-            result += frame >= settleAt ? target[i] : CHARS[Math.floor(Math.random() * CHARS.length)];
+            result +=
+              frame >= settleAt
+                ? target[i]
+                : CHARS[Math.floor(Math.random() * CHARS.length)];
           }
           setDisplayText(result);
           if (frame >= totalFrames) {
@@ -42,7 +45,9 @@ export default function ScrambleText({words} : {words: string[]}) {
 
     const cycle = async () => {
       while (true) {
-        await new Promise((resolve) => { timeout = setTimeout(resolve, HOLD_DURATION); });
+        await new Promise((resolve) => {
+          timeout = setTimeout(resolve, HOLD_DURATION);
+        });
         const nextIndex = (indexRef.current + 1) % words.length;
         indexRef.current = nextIndex;
         await scramble(words[nextIndex]);
@@ -55,10 +60,11 @@ export default function ScrambleText({words} : {words: string[]}) {
       clearTimeout(timeout);
       clearInterval(interval);
     };
-  }, []);
+  }, [words]);
 
-  return (<span className={isScrambling ? "text-muted-foreground" : ""}>
-            {displayText}
-          </span>)
-
+  return (
+    <span className={isScrambling ? "text-muted-foreground" : ""}>
+      {displayText}
+    </span>
+  );
 }

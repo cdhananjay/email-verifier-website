@@ -1,5 +1,4 @@
-import { ArrowRight} from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -14,16 +13,20 @@ export default function Cta() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-           <Button size="lg" className="rounded-2xl w-full sm:w-auto h-12 px-8 text-base gap-3" asChild>
-            <a
-              href={process.env.DISCORD_BOT_INVITE_URL ?? "#"}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Button
+              size="lg"
+              className="rounded-2xl w-full sm:w-auto h-12 px-8 text-base gap-3"
+              asChild
             >
-              Add to your server
-              <ArrowRight className="size-4" />
-            </a>
-          </Button> 
+              <a
+                href={process.env.DISCORD_BOT_INVITE_URL ?? "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Add to your server
+                <ArrowRight className="size-4" />
+              </a>
+            </Button>
           </CardContent>
         </Card>
       </div>
