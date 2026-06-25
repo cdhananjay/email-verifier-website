@@ -128,7 +128,8 @@ export default function VerifyClient() {
         <CardHeader className="items-center text-center">
           <CardTitle className="text-xl">Verify your email</CardTitle>
           <CardDescription>
-            Enter your email to receive a login link.
+            Enter your email to receive a login link. All verification data is
+            automatically purged every 24 hours.
           </CardDescription>
         </CardHeader>
         <CardContent>

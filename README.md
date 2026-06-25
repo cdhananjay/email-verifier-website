@@ -9,7 +9,7 @@
 [![Nodemailer](https://img.shields.io/badge/Nodemailer-30B980?logo=nodemailer&logoColor=fff)](https://nodemailer.com)
 [![Bun](https://img.shields.io/badge/Bun-000?logo=bun&logoColor=fff)](https://bun.sh)
 
-Companion authentication website for the [Email Verifier](https://github.com/cdhananjay/email-verifier) Discord bot. Users authenticate with their email via a login link, link their Discord account, and then run `/verify` in Discord to receive a verified role.
+Companion authentication website for the [Email Verifier](https://github.com/cdhananjay/email-verifier) Discord bot. Users authenticate with their email via a login link, link their Discord account, and then run `/verify` in Discord to receive a verified role. Discord email is never accessed, and verification data is automatically purged every 24 hours.
 
 See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) for details on server-side configuration, commands, and the full verification flow.
 
@@ -64,6 +64,7 @@ See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) fo
 | `BETTER_AUTH_SECRET`      | Better Auth secret key                        |
 | `EMAIL_USER`              | Gmail address used to send login link emails  |
 | `EMAIL_PASS`              | Gmail app password for the above address      |
+| `CRON_SECRET`             | Secret to authenticate the Vercel Cron job that purges verification data |
 
 ## Scripts
 
@@ -84,6 +85,7 @@ See the [Email Verifier README](https://github.com/cdhananjay/email-verifier) fo
 - **ORM:** [Prisma](https://www.prisma.io) 7
 - **Database:** PostgreSQL
 - **Email:** [Nodemailer](https://nodemailer.com) + [React Email](https://react.email)
+- **Cron:** [Vercel Cron Jobs](https://vercel.com/docs/cron-jobs)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com) v4 + [shadcn/ui](https://ui.shadcn.com) (radix-nova)
 - **Linter / Formatter:** [Biome](https://biomejs.dev)
 - **Runtime:** [Bun](https://bun.sh)
